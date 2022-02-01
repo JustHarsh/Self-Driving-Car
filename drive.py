@@ -11,7 +11,7 @@ import cv2
 sio = socketio.Server()
 
 app = Flask(__name__)  # '__main__'
-speed_limit = 10
+speed_limit = 15
 
 
 def img_preprocess(img):
@@ -50,6 +50,7 @@ def send_control(steering_angle, throttle):
 
 
 if __name__ == '__main__':
-    model = load_model(r'/Users/harshdarji/Documents/Projects/Self Driving Car/model.h5')
+    model = load_model(
+        r'./Self_Driving_Car/model.h5')
     app = socketio.Middleware(sio, app)
     eventlet.wsgi.server(eventlet.listen(('', 4567)), app)
